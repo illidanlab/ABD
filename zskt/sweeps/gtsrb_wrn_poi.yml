@@ -1,0 +1,47 @@
+name: attack-GTSRB
+project: ABD-ZSKT
+command:
+- ${interpreter}
+- ${program}
+- --dataset=GTSRB 
+- --teacher_architecture=WRN-16-2 
+- --student_architecture=WRN-16-1 
+- --poi_target=1
+- --pretrained_models_path=target1-ratio0.1_e200-b256-adam-lr0.1-wd0.0005-cos-holdout0.05
+- --log_times=100
+- --save_n_checkpoints=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  seed:
+    values:
+    - 0
+    - 1
+    - 2
+  AT_beta:
+    values:
+      # - 250 # default
+      - 0.
+  KL_temperature:
+    values:
+      - 0.5
+  trigger_pattern:
+    values:
+      - badnet_grid
+      - badnet_sq
+      - blend
+      - l0_inv
+      - l2_inv
+      - sig
+      - trojan_3x3
+      - trojan_8x8
+      - trojan_wm
+      - smooth
+      - cl
+  total_n_pseudo_batches:
+    values:
+      - 10000
+program: main.py

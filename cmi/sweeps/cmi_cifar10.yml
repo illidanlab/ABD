@@ -1,0 +1,77 @@
+name: cmi cifar10
+project: CMI
+command:
+- ${interpreter}
+- ${program}
+- --method=cmi
+- --dataset=cifar10
+- --batch_size=128
+- --synthesis_batch_size=256
+- --teacher=WRN-16-2
+- --student=wrn16_1
+- --lr=0.1
+- --kd_steps=400
+- --ep_steps=400
+- --g_steps=200
+- --lr_g=1e-3
+- --adv=0.5
+- --bn=1.0
+- --oh=1.0
+- --cr=0.8
+- --cr_T=0.1
+- --act=0
+- --balance=0
+- --T=20
+- --save_dir=run/scratch_cmi
+- --log_tag=scratch_cmi
+- --save_n_last_epoch=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: test acc
+parameters:
+  seed:
+    values:
+      - 0
+      - 1
+      - 2
+  trigger:
+    values:
+      # - badnet_grid
+      - badnet_sq
+      # - blend
+      # - l0_inv
+      # - l2_inv
+      # - sig
+      # - trojan_3x3
+      # - trojan_8x8
+      - trojan_wm
+      # - smooth
+      # - cl
+  poi_target:
+    values:
+      - 0
+  # # ## defense
+  # # 1. SV
+  # shufl_coef:
+  #   values:
+  #     # - 0.
+  #     - 0.1
+  #     # - 1.
+  #     # - 10.
+  #     # - 100.
+  # 2. Self-Restropect
+  unlearn:
+    values:
+      - True
+      # - False
+  unlearn_resume:
+    values:
+      - 197.pth
+      - 198.pth
+  inner_round:
+    values:
+      - 10
+      - 20
+program: datafree_kd.py

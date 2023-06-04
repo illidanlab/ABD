@@ -1,0 +1,79 @@
+name: defense-GTSRB
+project: ABD-ZSKT
+command:
+- ${interpreter}
+- ${program}
+- --dataset=GTSRB 
+- --teacher_architecture=WRN-16-2 
+- --student_architecture=WRN-16-1 
+- --poi_target=1
+- --pretrained_models_path=target1-ratio0.1_e200-b256-adam-lr0.1-wd0.0005-cos-holdout0.05
+- --log_times=100
+- --save_n_checkpoints=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  seed:
+    values:
+    - 0
+    - 1
+    - 2
+  AT_beta:
+    values:
+      # - 250 # default
+      - 0.
+  KL_temperature:
+    values:
+      - 0.5
+  trigger_pattern:
+    values:
+      - badnet_grid
+  total_n_pseudo_batches:
+    values:
+      - 10000
+  # defense
+  # 1. SV
+  shuf_teacher:
+    values:
+      - 0.1
+      # - 0.
+  pseudo_test_batches:
+    values:
+      - 50  # default: evaluate shuffle in 50 batches.
+  # TODO uncomment to use SR.
+  # # 2. SR
+  # sup_backdoor:    # suppress backdoor via robust distillation
+  #   values:
+  #     - True
+  #     # - False
+  # sup_resume_lr:
+  #   values:
+  #     - 1e-4
+  #     - 5e-4
+  # use_hg:
+  #   values:
+  #     - True
+  #     # - False
+  # # batch_size:
+  # #   values:
+  # #     - 128
+  # inner_round:
+  #   values:
+  #     - 10
+  #     - 20
+  # # hg_start_round:
+  # #   values:
+  # #     # - 79400 # default for 8e4iters
+  # #     - 9400 # default for 1e4iters
+  # sup_resume:
+  #   values:
+  #     - pb9799.pth
+  #     # - pb9599.pth
+  # sup_pert_model:
+  #   values:
+  #     # - student # default
+  #     - teacher
+program: main.py

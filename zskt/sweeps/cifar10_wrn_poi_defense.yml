@@ -1,0 +1,78 @@
+name: defense-CIFAR10
+project: ABD-ZSKT
+command:
+- ${interpreter}
+- ${program}
+- --dataset=CIFAR10 
+- --teacher_architecture=WRN-16-2 
+- --student_architecture=WRN-16-1 
+- --save_n_checkpoints=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: Eval/test_acc
+parameters:
+  seed:
+    values:
+    - 0
+    - 1
+    - 2
+  trigger_pattern:
+    values:
+      - badnet_grid
+      # - badnet_sq
+      # - blend
+      # - l0_inv
+      # - l2_inv
+      # - sig
+      # - trojan_3x3
+      # - trojan_8x8
+      # - trojan_wm
+      # - smooth
+      # - cl
+  poi_target:
+    values:
+      - 0
+  # defense
+  # 1. SV
+  shuf_teacher:
+    values:
+      - 0.1
+      # - 0.
+  pseudo_test_batches:
+    values:
+      - 0.
+      # - 50
+  # TODO uncomment to use SR
+  # # 2. Self-Resp (SR)
+  # sup_backdoor:    # suppress backdoor via robust distillation
+  #   values:
+  #     - True
+  #     # - False
+  # sup_resume:
+  #   values:
+  #     # - pb79199.pth
+  #     - pb79399.pth
+  #     - pb79599.pth
+  # use_hg:
+  #   values:
+  #     - True
+  #     # - False
+  # batch_size:
+  #   values:
+  #     - 128
+  # inner_round:
+  #   values:
+  #     # - 5
+  #     - 10
+  #     - 20  # lower ASR
+  # sup_pert_model:
+  #   values:
+  #     # - student # default
+  #     - teacher
+  # sup_resume_lr:
+  #   values:
+  #     - 1e-4
+  #     - 5e-4
+program: main.py

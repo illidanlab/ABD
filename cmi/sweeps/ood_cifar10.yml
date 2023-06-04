@@ -1,0 +1,54 @@
+name: ood cifar10
+project: CMI
+command:
+- ${interpreter}
+- ${program}
+- --dataset=cifar10
+- --save_n_last_epoch=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: test acc
+parameters:
+  sch:
+    values:
+      - step
+  epochs:
+    values:
+      - 300
+  seed:
+    values:
+      - 0
+      - 1
+      - 2
+  trigger:
+    values:
+      - badnet_grid
+      - trojan_wm
+  poi_target:
+    values:
+      - 0
+  # ## defense
+  # 1. shuffle
+  shufl_coef:
+    values:
+      - 0.1
+  # pseudo_test_batches:
+  #   values:
+  #     - 100
+  # TODO uncomment to use SR after standard training.
+  # # SR
+  # unlearn:
+  #   values:
+  #     # - True
+  #     - False
+  # unlearn_resume:
+  #   values:
+  #     - 297.pth
+  #     - 298.pth
+  # inner_round:
+  #   values:
+  #     - 10
+  #     - 20
+program: vanilla_kd_ood.py
