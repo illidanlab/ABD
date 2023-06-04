@@ -31,7 +31,7 @@ Prepare for running.
 
 ## Citation
 
-```latex
+```bibtex
 @inproceedings{hong2023abd,
   title={Revisiting Data-Free Knowledge Distillation with Poisoned Teachers},
   author={Hong, Junyuan and Zeng, Yi and Yu, Shuyang and Lyu, Lingjuan and Jia, Ruoxi and Zhou, Jiayu},
