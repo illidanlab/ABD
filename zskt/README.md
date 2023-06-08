@@ -7,15 +7,14 @@ The code is based on [ZSKT](https://github.com/polo5/ZeroShotKnowledgeTransfer).
 General
 * Single experiment. Distill from a `badnet_grid`-backoored teacher with arch WRN-16-2 to student with arch WRN-16-1.
     ```shell
-    export CUDA_VISIBLE_DEVICES=0  # specific GPU
-    python main.py --dataset=CIFAR10 --teacher_architecture=WRN-16-2 --student_architecture=WRN-16-1 --trigger_pattern=badnet_grid \
-        --sup_backdoor=False --shuf_teacher=0.1 --seeds=3
+    export CUDA_VISIBLE_DEVICES=0  # specify GPU
+    python main.py --dataset=CIFAR10 --teacher_architecture=WRN-16-2 --student_architecture=WRN-16-1 --trigger_pattern=badnet_grid --seeds=3
     ```
-* Run sweeps. Find a sweep command at [LOG.md](LOG.md) where you can find all hparams. For example,
+* Run sweeps. Choose a sweep command below where you can find all hparams. For example,
     ```shell
-    wandb sweep sweeps/cifar10_wrn_poi_sbd.yml
-    # get the `wandb agent <some code>` from the CLI output.
-    wandb agent <received code>  # this will run one pair of hyper-params from `cifar10_wrn_poi_sbd.yml`.
+    wandb sweep sweeps/cifar10_wrn_poi.yml
+    # get the `wandb agent <agent code>` from the CLI output.
+    wandb agent <agent code>  # this will run one pair of hyper-params from `cifar10_wrn_poi.yml`.
     ```
     `wandb agent <>` can be run in parallel in different processes, which will auto select different params in `yml` file.
 
