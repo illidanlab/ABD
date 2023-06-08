@@ -1,7 +1,7 @@
 Revisiting Data-Free Knowledge Distillation with Poisoned Teachers
 ====
 
-This repository implements the paper: "Revisiting Data-Free Knowledge Distillation with Poisoned Teachers." Junyuan Hong, Yi Zeng, Shuyang Yu, Lingjuan Lyu, Ruoxi Jia and Jiayu Zhou. ICML 2023.
+This repository implements the paper: "Revisiting Data-Free Knowledge Distillation with Poisoned Teachers." Junyuan Hong*, Yi Zeng*, Shuyang Yu*, Lingjuan Lyu, Ruoxi Jia and Jiayu Zhou. ICML 2023. (*equal contribution)
 
 [paper](https://arxiv.org/abs/2306.02368) / [code](https://github.com/illidanlab/ABD) / [blog](https://jyhong.gitlab.io/publication/datafree_backdoor2023icml/)
 
