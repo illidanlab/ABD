@@ -22,9 +22,9 @@ General
 
 <table style="text-align: center">
     <tr>
-        <td>Trigger</td>
-        <td>Teacher</td>
-        <td colspan="3">Student Acc/ASR</td>
+        <td><b>Trigger</b></td>
+        <td><b>Teacher</b></td>
+        <td colspan="3"><b>Student Acc/ASR</b></td>
     </tr>
     <tr>
         <td></td>
