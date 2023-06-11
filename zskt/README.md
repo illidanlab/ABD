@@ -121,6 +121,14 @@ wandb sweep sweeps/cifar10_wrn_poi_distill.yml
 wandb sweep sweeps/gtsrb_wrn_poi_distill.yml
 ```
 
+### Customization
+
+**Add dataset**:
+Edit `get_test_loader` in [zskt/datasets/datasets.py](zskt/datasets/datasets.py).
+
+**Add model**:
+Edit `zskt/models/selector.py` to add new architecture and pre-trained model paths.
+
 ## Defense
 
 * CIFAR10

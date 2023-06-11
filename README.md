@@ -27,7 +27,7 @@ Prepare for running.
     ...
     ```
 4. Signup [wandb](https://wandb.ai/) and set up by running `wandb login` with your API from the website. Detailed [instruction](https://docs.wandb.ai/quickstart).
-5. Check [ZSKT](zskt) or [CMI](cmi) folders for running experiments.
+5. Check [ZSKT](zskt) or [CMI](cmi) (including OoD distillation) folders for running experiments.
 
 ## Customization
 
@@ -36,15 +36,7 @@ Prepare for running.
 Attacking is done by (1) pre-training a poisoned teacher on a poisoned dataset and (2) distill a student using the teacher model.
 Our repo provides datasets: CIFAR10, and GTSRB.
 CIFAR10 models are pre-trained by the [codebase](https://github.com/VITA-Group/Trap-and-Replace-Backdoor-Defense).
-
-**Add dataset**:
-For ZSKT, edit `get_test_loader` in [](zskt/datasets/datasets.py).
-For CMI codebase, edit `get_dataset` and `NORMALIZE_DICT` in [cmi/registry.py](cmi/registry.py).
-
-**Add model**:
-For ZSKT, edit `zskt/models/selector.py` to add new architecture and pre-trained model paths.
-For CMI codebase, edit `MODEL_DICT` in [cmi/registry.py](cmi/registry.py) to add model architecture.
-To set pre-trained model files, edit `get_pretrained_path` in [cmi/](cmi/utils/config.py).
+Check [ZSKT](zskt) or [CMI](cmi) (including OoD) for attack runs and customization with your *own data and model*.
 
 ### Defense by ABD
 

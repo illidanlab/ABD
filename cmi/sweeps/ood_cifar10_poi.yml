@@ -1,0 +1,32 @@
+name: ood cifar10 attack
+project: CMI
+command:
+- ${interpreter}
+- ${program}
+- --dataset=cifar10
+- --save_n_last_epoch=5
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: test acc
+parameters:
+  sch:
+    values:
+      - step
+  epochs:
+    values:
+      - 300
+  seed:
+    values:
+      - 0
+      - 1
+      - 2
+  trigger:
+    values:
+      - badnet_grid
+      - trojan_wm
+  poi_target:
+    values:
+      - 0
+program: vanilla_kd_ood.py
