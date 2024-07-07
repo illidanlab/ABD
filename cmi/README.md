@@ -24,6 +24,8 @@ To set pre-trained model files, edit `get_pretrained_path` in [cmi/](cmi/utils/c
 
 ## OoD
 
+The OoD dataset include OoD patches generated from one image. Details follow [single-img-explorating](https://github.com/yukimasano/single-img-extrapolating/tree/master/data_generation).
+
 * Attack
 ```shell
 wandb sweep sweeps/ood_cifar10_poi.yml
